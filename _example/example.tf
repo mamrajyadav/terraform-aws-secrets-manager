@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "iam-policy" {
 
 module "secret" {
   source                  = "../"
-  name                    = "secret-manager"
+  name                    = "secret-managers"
   environment             = "test"
   label_order             = ["name", "environment"]
   policy                  = ""

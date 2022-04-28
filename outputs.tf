@@ -1,11 +1,11 @@
 output "arn" {
   description = "AWS SecretManager Secret ARN"
-  value       = aws_secretsmanager_secret.secret.arn
+  value       = join("",aws_secretsmanager_secret.secret.*.arn)
 }
 
 output "id" {
   description = "AWS SecretManager Secret ARN"
-  value       = aws_secretsmanager_secret.secret.id
+  value       = join("",aws_secretsmanager_secret.secret.*.id)
 }
 
 output "secret" {

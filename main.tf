@@ -10,6 +10,8 @@ module "labels" {
 }
 
 resource "aws_secretsmanager_secret" "secret" {
+  count =  var.enable && var.secretsmanager-enabled ? 1 : 0
+
   kms_key_id              = var.kms_key_id
   name                    = var.name
   policy                  = var.policy
@@ -19,7 +21,7 @@ resource "aws_secretsmanager_secret" "secret" {
 }
 
 resource "aws_secretsmanager_secret_version" "secret" {
-  count         = var.secretsmanager-enabled ? 1 : 0
+  count         = var.enable && var.secretsmanager-enabled ? 1 : 0
   secret_id     = join("", aws_secretsmanager_secret.secret.*.id)
   secret_string = var.value
 
